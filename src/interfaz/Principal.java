@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package interfaz;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -93,12 +94,27 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.add(cmdManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 90, -1));
 
         cmdAutomatico.setText("Automatico");
+        cmdAutomatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdAutomaticoActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         cmdOperaciones.setText("Operaciones");
+        cmdOperaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdOperacionesActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
         cmdLimpiar.setText("Limpiar");
+        cmdLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLimpiarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 90, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 580, 80));
@@ -127,8 +143,8 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 340, 260));
 
-        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cant. No. Pares", "Numeros Pares", "Letra C", "Letra H" }));
-        jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, -1, -1));
+        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cant. No. Pares", "Numeros Pares", "Letra C", "Diagonal Principal", "Letra H" }));
+        jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 120, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultado", 0, 0, new java.awt.Font("Times New Roman", 3, 14))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,7 +152,7 @@ public class Principal extends javax.swing.JFrame {
         txtResultado.setEditable(false);
         jPanel4.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 670, 30));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, 710, 70));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, 710, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,6 +166,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNumeroColumnasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroColumnasActionPerformed
@@ -157,8 +174,143 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroColumnasActionPerformed
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-        // TODO add your handling code here:
+        int nf, nc;
+        DefaultTableModel tm, tm2;
+
+        nf = Integer.parseInt((txtNumeroFilas).getText());
+        nc = Integer.parseInt((txtNumeroColumnas).getText());
+
+        tm = (DefaultTableModel) TblTablaInicial.getModel();
+        tm2 = (DefaultTableModel) TblTablaResultado.getModel();
+
+        tm.setRowCount(nf);
+        tm.setColumnCount(nc);
+
+        tm2.setRowCount(nf);
+        tm2.setColumnCount(nc);
+
     }//GEN-LAST:event_cmdCrearActionPerformed
+
+    private void cmdAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAutomaticoActionPerformed
+        int nf, nc, n;
+
+        nc = TblTablaInicial.getColumnCount();
+        nf = TblTablaResultado.getRowCount();
+
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                n = (int) (Math.random() * 50 + 1);
+                TblTablaInicial.setValueAt(n, i, j);
+            }
+
+        }
+
+    }//GEN-LAST:event_cmdAutomaticoActionPerformed
+
+    private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
+        int nc, nf;
+        DefaultTableModel tm, tm2;
+
+        nc = TblTablaInicial.getColumnCount();
+        nf = TblTablaResultado.getRowCount();
+
+        txtNumeroFilas.setText("");
+        txtNumeroColumnas.setText("");
+        txtNumeroFilas.requestFocusInWindow();
+        txtResultado.setText("");
+        cmbOperaciones.setSelectedIndex(0);
+
+        tm = (DefaultTableModel) TblTablaInicial.getModel();
+        tm2 = (DefaultTableModel) TblTablaResultado.getModel();
+
+        tm.setRowCount(0);
+        tm.setColumnCount(0);
+
+        tm2.setRowCount(0);
+        tm2.setColumnCount(0);
+    }//GEN-LAST:event_cmdLimpiarActionPerformed
+
+    private void cmdOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionesActionPerformed
+        int op, nf, nc, aux, cont = 0;
+        op = cmbOperaciones.getSelectedIndex();
+
+        nf = TblTablaInicial.getRowCount();
+        nc = TblTablaInicial.getColumnCount();
+
+        switch (op) {
+
+            case 0:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) TblTablaInicial.getValueAt(i, j);
+                        if (aux % 2 == 0) {
+                            cont++;
+                        }
+
+                    }
+
+                }
+                txtResultado.setText("El numero de elementos pares es: " + cont);
+                break;
+
+            case 1:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) TblTablaInicial.getValueAt(i, j);
+                        if (aux % 2 == 0) {
+                            TblTablaResultado.setValueAt(aux, i, j);
+                        }
+
+                    }
+
+                }
+
+                break;
+
+            case 2:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) TblTablaInicial.getValueAt(i, j);
+                        if (i == 0 || i == nf - 1 || j == 0) {
+                            TblTablaResultado.setValueAt(aux, i, j);
+                        }
+
+                    }
+
+                }
+
+                break;
+
+            case 3:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) TblTablaInicial.getValueAt(i, j);
+                        if (i == j) {
+                            TblTablaResultado.setValueAt(aux, i, j);
+                        }
+
+                    }
+
+                }
+
+                break;
+
+            case 4:
+                for (int i = 0; i < nf; i++) {
+                    for (int j = 0; j < nc; j++) {
+                        aux = (int) TblTablaInicial.getValueAt(i, j);
+                        if (j == 0 || j==nf-1 || i==nc/2) {
+                            TblTablaResultado.setValueAt(aux, i, j);
+                        }
+
+                    }
+
+                }
+
+                break;
+        }
+
+    }//GEN-LAST:event_cmdOperacionesActionPerformed
 
     /**
      * @param args the command line arguments
