@@ -21,11 +21,11 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        JButton botonesH[]={cmdCrear,cmdLimpiar};
-        JButton botonesD[]= {cmdManual,cmdAutomatico,cmdOperaciones};
-                
-       Helper.habilitarBotones(botonesH);
-       Helper.deshabilitarBotones(botonesD);
+        JButton botonesH[] = {cmdCrear, cmdLimpiar};
+        JButton botonesD[] = {cmdManual, cmdAutomatico, cmdOperaciones};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
     }
 
     /**
@@ -56,7 +56,8 @@ public class Principal extends javax.swing.JFrame {
         TblTablaInicial = new javax.swing.JTable();
         cmbOperaciones = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
-        txtResultado = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtResultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,16 +157,19 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 340, 260));
 
-        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cant. No. Pares", "Numeros Pares", "Letra C", "Diagonal Principal", "Letra H" }));
+        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cant. No. Pares", "Numeros Pares", "Letra C", "Diagonal Principal", "Letra H", "Recorrido Uno", "Recorrido Dos" }));
         jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 120, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultado", 0, 0, new java.awt.Font("Times New Roman", 3, 14))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtResultado.setEditable(false);
-        jPanel4.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 670, 30));
+        txtResultado.setColumns(20);
+        txtResultado.setRows(5);
+        jScrollPane3.setViewportView(txtResultado);
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, 710, 80));
+        jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 670, 40));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, 710, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,7 +179,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -201,12 +205,12 @@ public class Principal extends javax.swing.JFrame {
 
         tm2.setRowCount(nf);
         tm2.setColumnCount(nc);
-        
-       JButton botonesH[]={cmdManual,cmdAutomatico,cmdLimpiar};
-        JButton botonesD[]= {cmdCrear,cmdOperaciones};
-                
-       Helper.habilitarBotones(botonesH);
-       Helper.deshabilitarBotones(botonesD);
+
+        JButton botonesH[] = {cmdManual, cmdAutomatico, cmdLimpiar};
+        JButton botonesD[] = {cmdCrear, cmdOperaciones};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
 
     }//GEN-LAST:event_cmdCrearActionPerformed
 
@@ -224,16 +228,16 @@ public class Principal extends javax.swing.JFrame {
 
         }
 
-    JButton botonesH[]={cmdOperaciones,cmdLimpiar};
-        JButton botonesD[]= {cmdCrear,cmdManual,cmdAutomatico};
-                
-       Helper.habilitarBotones(botonesH);
-       Helper.deshabilitarBotones(botonesD);
-       
+        JButton botonesH[] = {cmdOperaciones, cmdLimpiar};
+        JButton botonesD[] = {cmdCrear, cmdManual, cmdAutomatico};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+
     }//GEN-LAST:event_cmdAutomaticoActionPerformed
 
     private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
-    
+
         txtNumeroFilas.setText("");
         txtNumeroColumnas.setText("");
         txtNumeroFilas.requestFocusInWindow();
@@ -242,19 +246,19 @@ public class Principal extends javax.swing.JFrame {
 
         Helper.porDefectoTabla(TblTablaInicial);
         Helper.porDefectoTabla(TblTablaResultado);
-        
-        JButton botonesH[]={cmdCrear,cmdLimpiar};
-        JButton botonesD[]= {cmdManual,cmdAutomatico,cmdOperaciones};
-                
-       Helper.habilitarBotones(botonesH);
-       Helper.deshabilitarBotones(botonesD);
+
+        JButton botonesH[] = {cmdCrear, cmdLimpiar};
+        JButton botonesD[] = {cmdManual, cmdAutomatico, cmdOperaciones};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
     private void cmdOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionesActionPerformed
-        int op,  cantPares = 0;
+        int op, cantPares = 0;
         op = cmbOperaciones.getSelectedIndex();
         Helper.limpiadoTabla(TblTablaResultado);
-        
+
         switch (op) {
 
             case 0:
@@ -279,14 +283,22 @@ public class Principal extends javax.swing.JFrame {
             case 4:
                 Helper.letraH(TblTablaInicial, TblTablaResultado);
                 break;
+
+            case 5:
+                txtResultado.setText(Helper.recorridoUno(TblTablaInicial));
+                break;
+
+            case 6:
+                txtResultado.setText(Helper.recorridoDos(TblTablaInicial));
+                break;
         }
 
-     JButton botonesH[]={cmdOperaciones,cmdLimpiar};
-        JButton botonesD[]= {cmdManual,cmdAutomatico,cmdCrear};
-                
-       Helper.habilitarBotones(botonesH);
-       Helper.deshabilitarBotones(botonesD);
-       
+        JButton botonesH[] = {cmdOperaciones, cmdLimpiar};
+        JButton botonesD[] = {cmdManual, cmdAutomatico, cmdCrear};
+
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+
     }//GEN-LAST:event_cmdOperacionesActionPerformed
 
     private void cmdManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdManualActionPerformed
@@ -306,7 +318,7 @@ public class Principal extends javax.swing.JFrame {
                         TblTablaInicial.setValueAt(n, i, j);
 
                     } catch (NumberFormatException e) {
-                       Helper.mensaje(this, "Digite un Numero Valido",3);
+                        Helper.mensaje(this, "Digite un Numero Valido", 3);
                         sw = 0;
                     } catch (NullPointerException e) {
                         res = JOptionPane.showConfirmDialog(this, "Seguro que deseas salir", "Salir", JOptionPane.YES_OPTION);
@@ -314,7 +326,7 @@ public class Principal extends javax.swing.JFrame {
                             sw = 1;
                             i = nf;
                             j = nc;
-                            
+
                             Helper.porDefectoTabla(TblTablaInicial);
                             Helper.porDefectoTabla(TblTablaResultado);
 
@@ -385,8 +397,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField txtNumeroColumnas;
     private javax.swing.JTextField txtNumeroFilas;
-    private javax.swing.JTextField txtResultado;
+    private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }
