@@ -221,6 +221,16 @@ public class Helper {
 
         return aux;
     } 
+   
+    public static String recorridoHaciaIzquierda(int[][] m, int i, int in, int fin) {
+         
+        String aux = "";
+         for (int j =in; j >= fin; j--) {
+             aux = aux + m[i][j] + ", ";
+         }
+         return aux;
+ 
+     }
     
    public static String recorridoHaciaDerecha(int[][] m, int i) {
         int nc = m[0].length;
@@ -231,6 +241,16 @@ public class Helper {
 
         return aux;
     } 
+   
+   public static String recorridoHaciaDerecha(int[][] m, int i,int in, int fin) {
+        
+         String aux = "";
+         for (int j = in; j < fin; j++) {
+             aux = aux + m[i][j] + ", ";
+         }
+         return aux;
+ 
+     }
    
    public static String recorridoDos(JTable tabla1){
         int m[][] = pasoDeDatos(tabla1);
