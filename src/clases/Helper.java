@@ -371,4 +371,21 @@ public class Helper {
         return aux;
 
     }
+    
+   public static String recorridoTres(JTable tabla) {
+        int m[][] = pasoDeDatos(tabla);
+        int nf = m.length;
+        int nc = m[0].length;
+        String aux = "";
+        
+        aux= aux + Helper.recorridoDiagonalPrincipalAbajo(m, 0, nf/2);
+        aux= aux + Helper.recorridoDiagonalSecundariaAbajo(m, nf/2+1, nf-1);
+        aux= aux + Helper.recorridoHaciaDerecha(m, nf-1, 1, nc-1);
+        aux= aux + Helper.recorridoDiagonalPrincipalArriba(m, nf-2, nf/2);
+        aux= aux + Helper.recorridoDiagonalSecundariaArriba(m, nf/2-1, 0);
+        aux= aux + Helper.recorridoHaciaIzquierda(m, 0, nf-2, 0);
+
+    return aux;
+    
+}
 }

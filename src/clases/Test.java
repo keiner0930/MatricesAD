@@ -42,7 +42,7 @@ public class Test {
     
         System.out.println(Helper.mostrar(m)); 
         System.out.println("Recorrido ");
-        System.out.println(Helper.recorridoDiagonalSecundariaArriba(m,2,2));
+      //  System.out.println(Helper.recorridoTres(m));
     }
     
 }
