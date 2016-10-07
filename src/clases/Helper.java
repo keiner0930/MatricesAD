@@ -235,7 +235,7 @@ public class Helper {
    public static String recorridoHaciaDerecha(int[][] m, int i) {
         int nc = m[0].length;
         String aux = "";
-        for (int j = 0; j < nc; j++) {
+        for (int j = 0; j <= nc; j++) {
             aux = aux + m[i][j] + ", ";
         }
 
@@ -245,12 +245,14 @@ public class Helper {
    public static String recorridoHaciaDerecha(int[][] m, int i,int in, int fin) {
         
          String aux = "";
-         for (int j = in; j < fin; j++) {
+         for (int j = in; j <= fin; j++) {
              aux = aux + m[i][j] + ", ";
          }
          return aux;
  
      }
+   
+   
    
    public static String recorridoDos(JTable tabla1){
         int m[][] = pasoDeDatos(tabla1);
@@ -267,6 +269,63 @@ public class Helper {
         aux = aux.substring(0, aux.length()-2)+".";
         return aux;
     }
+   
+   public static String mostrar(int [][]m){
+   String aux="";    
+       for (int i = 0; i <m.length; i++) {
+           for (int j = 0; j <m[0].length; j++) {
+           aux= aux +m[i][j];    
+           }
+       aux=aux+"\n";
+       }
+   return aux;
+   
+   }
+  
+ public static String recorridoDiagonalPrincipalAbajo(int[][] m) {
+        int nf = m.length;
+        String aux = "";
+        for (int i = 0; i < nf; i++) {
+            aux = aux + m[i][i]+ ", ";
+            
+        }
+        return aux;
+
+    }
+ 
+     public static String recorridoDiagonalPrincipalAbajo(int[][] m, int in, int fin) {
+        int nf = m.length;
+        String aux = "";
+        for (int i = in; i <= fin; i++) {
+            aux = aux + m[i][i]+ ", ";
+            
+        }
+        return aux;
+
+    }   
+   
+   public static String recorridoDiagonalPrincipalArriba(int[][] m) {
+        int nf = m.length;
+        String aux = "";
+        for (int i =nf-1; i >= 0; i--) {
+            aux = aux + m[i][i]+ ", ";
+            
+        }
+        return aux;
+
+    }
+   public static String recorridoDiagonalPrincipalArriba(int[][] m, int in, int fin) {
+        int nf = m.length;
+        String aux = "";
+        for (int i =in; i >= fin; i--) {
+            aux = aux + m[i][i]+ ", ";
+            
+        }
+        return aux;
+
+    }
+   
+   
    
    
    
